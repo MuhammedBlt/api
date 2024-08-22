@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 
 namespace api.ViewModel
 {
-    public class ProductRequest
+    public class OrderDetailRequest
     {
-        public string? ProductName { get; set; }
-        public decimal ProductPrice { get; set; }
+        
     }
 }

@@ -2,8 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using api.Entities.Abstract;
 
-namespace api.Controllers.Repository
+namespace api.Repository.Abstract
 {
     public interface IRepository<T> where T: class
     {
@@ -12,5 +13,6 @@ namespace api.Controllers.Repository
         Task UpdateAsync (T entity);
         Task DeleteAsync (T entity);
         Task<T> AddAsync(T entity);
+    
     }
 }

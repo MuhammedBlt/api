@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
+using api.Repository.Abstract;
 using Microsoft.EntityFrameworkCore;
+using api.Repository.Concrete; 
 
-namespace api.Controllers.Repository
+
+namespace api.Repository.Concrete
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        protected readonly DbSet<T> _dbSet;
-        private readonly MyDbContext _myDbContext;
+        public readonly DbSet<T> _dbSet;
+        public readonly MyDbContext _myDbContext;
         public Repository(MyDbContext myDbContext)
         { _dbSet=myDbContext.Set<T>();
          _myDbContext=myDbContext;

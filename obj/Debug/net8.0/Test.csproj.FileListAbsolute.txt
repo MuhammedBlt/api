@@ -137,3 +137,4 @@
 /Users/muhammedbulut/Desktop/api/bin/Debug/net8.0/Swashbuckle.AspNetCore.SwaggerGen.dll
 /Users/muhammedbulut/Desktop/api/bin/Debug/net8.0/Swashbuckle.AspNetCore.SwaggerUI.dll
 /Users/muhammedbulut/Desktop/api/obj/Debug/net8.0/Test.MvcApplicationPartsAssemblyInfo.cs
+/Users/muhammedbulut/Desktop/api/obj/Debug/net8.0/Test.sourcelink.json

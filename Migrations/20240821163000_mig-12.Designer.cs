@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using api.Data;
@@ -11,9 +12,11 @@ using api.Data;
 namespace Test.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240821163000_mig-12")]
+    partial class mig12
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,19 +44,15 @@ namespace Test.Migrations
 
             modelBuilder.Entity("api.Entities.Concrete.Customer", b =>
                 {
-                    b.Property<int>("CustomerId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("CustomerId"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
+                    b.Property<string>("Id")
                         .HasColumnType("text");
 
-                    b.HasKey("CustomerId");
+                    b.Property<int>("Name")
+                        .HasColumnType("integer");
 
-                    b.ToTable("Customer");
+                    b.HasKey("Id");
+
+                    b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("api.Entities.Concrete.Order", b =>
@@ -129,6 +128,9 @@ namespace Test.Migrations
                     b.Property<int?>("CustomerId")
                         .HasColumnType("integer");
 
+                    b.Property<string>("CustomerId1")
+                        .HasColumnType("text");
+
                     b.Property<int?>("OrderId")
                         .HasColumnType("integer");
 
@@ -137,7 +139,7 @@ namespace Test.Migrations
 
                     b.HasKey("ShopCartId");
 
-                    b.HasIndex("CustomerId");
+                    b.HasIndex("CustomerId1");
 
                     b.HasIndex("OrderId");
 
@@ -170,7 +172,7 @@ namespace Test.Migrations
                 {
                     b.HasOne("api.Entities.Concrete.Customer", "Customer")
                         .WithMany()
-                        .HasForeignKey("CustomerId");
+                        .HasForeignKey("CustomerId1");
 
                     b.HasOne("api.Entities.Concrete.Order", "Order")
                         .WithMany()
