@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace api.Controllers
 {
-    public class OrderDetailWithGenericRepoController
+    public class OrderItemWithGenericRepoController
     {
         
     }

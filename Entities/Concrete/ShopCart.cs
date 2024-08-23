@@ -14,5 +14,6 @@ namespace api.Entities.Concrete
         public int CustomerId { get; set; }
         public int ShopCartQuantity { get; set; }
         public int ShopCartTotal { get; set; }
+        public List<CartItem> CartItems { get; set; }= new List<CartItem>();
     }
 }

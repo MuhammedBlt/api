@@ -12,7 +12,7 @@ namespace api.Entities.Concrete
     {
         public int OrderId { get; set;}
         public DateTime OrderDate { get; set;}
-        public List<OrderDetail>Items { get; set;}
+        public List<OrderItem>OrderItems { get; set;}= new List<OrderItem>();
         public int CustomerId { get; set; }
 
 

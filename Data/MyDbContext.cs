@@ -17,8 +17,10 @@ namespace api.Data
         public DbSet<Order> Orders { get; set; }
         public DbSet<Category> Categories { get; set; }
 
-        public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<OrderItem> OrderDetails { get; set; }
         public DbSet<ShopCart> ShopCarts { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
+       
 
         public MyDbContext(DbContextOptions dbContextOptions) : base(dbContextOptions)
         { }
@@ -29,7 +31,30 @@ namespace api.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-         
+            modelBuilder.Entity<CartItem>()
+                .HasOne(ci => ci.Product)
+                .WithMany()
+                .HasForeignKey(ci => ci.ProductId);
+
+            modelBuilder.Entity<ShopCart>()
+                .HasMany(sc => sc.CartItems)
+                .WithOne(ci => ci.ShopCart)
+                .HasForeignKey(ci => ci.ShopCartId);
+
+            modelBuilder.Entity<Order>()
+                .HasMany(o => o.OrderItems)
+                .WithOne(oi => oi.Order)
+                .HasForeignKey(oi => oi.OrderId);
+
+            modelBuilder.Entity<OrderItem>()
+                .HasOne(oi => oi.Product)
+                .WithMany()
+                .HasForeignKey(oi => oi.ProductId);
+                modelBuilder.Entity<Product>()
+                .HasOne(p => p.Category)  
+                .WithMany(c => c.Products) 
+                .HasForeignKey(p => p.CategoryId); 
+
         }
     }
 }

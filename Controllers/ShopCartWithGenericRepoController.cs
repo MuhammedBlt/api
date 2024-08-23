@@ -9,18 +9,25 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
 {
+    [Route("[controller]")]
     public class ShopCartWithGenericRepoController : Controller
     {
+        
         private readonly IShopCartRepository _shopCartRespository;
+        public ShopCartWithGenericRepoController(IShopCartRepository shopCartRespository)
+         {
+             _shopCartRespository = shopCartRespository;
+         }
+        
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] ShopCartRequest shopCart)
         {
             if (shopCart.CustomerId == 0 || shopCart.ProductId == 0)
             {
-                return BadRequest("Musteri ve Urun dolu olmak zorunda");
+                return BadRequest($"Musteri ve Urun dolu olmak zorunda");
 
             }
-             var shopCartEntity = new ShopCart()
+            var shopCartEntity = new ShopCart()
             {
 
                 ProductId = shopCart.ProductId,
@@ -29,17 +36,24 @@ namespace api.Controllers
                 ShopCartTotal = shopCart.ShopCartTotal
             };
             var createdShopCartReponse = await _shopCartRespository.AddAsync(shopCartEntity);
-            return CreatedAtAction(nameof(GetById), new { id = createdShopCartReponse.ProductId }, createdShopCartReponse);
+            return CreatedAtAction(nameof(GetById), new { id = createdShopCartReponse.ShopCartId }, createdShopCartReponse);
 
         }
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            var product = await _shopCartRespository.GetAllAsync();
+            return Ok(product);
+        }
         [HttpGet("{id}")]
-         public async Task<IActionResult> GetById(int id)
-         {
-             var product = await _shopCartRespository.GetByIdAsync(id);
-             if (product == null)
-             {
-                 return NotFound();
-             }
-             return Ok(product);
+        public async Task<IActionResult> GetById(int id)
+        {
+            var product = await _shopCartRespository.GetByIdAsync(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return Ok(product);
+        }
     }
-}}
+}

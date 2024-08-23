@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace api.Repository.Concrete
 {
-    public class OrderDetailRepositor
+    public class OrderItemRepository
     {
         
     }

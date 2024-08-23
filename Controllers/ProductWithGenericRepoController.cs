@@ -67,6 +67,7 @@
              }
              productEntity.ProductName = product.ProductName;
              productEntity.ProductPrice = product.ProductPrice;
+             productEntity.CategoryId = product.CategoryId;
              await _productRespository.UpdateAsync(productEntity);
              return NoContent();
  
@@ -87,3 +88,4 @@
          }
      }
  }
+
