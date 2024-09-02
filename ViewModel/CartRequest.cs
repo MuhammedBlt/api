@@ -2,12 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using api.Entities.Concrete;
 
 namespace api.ViewModel
 {
-    public class CustomerRequest
+    public class CartRequest
     {
-        public string CustomerName { get; set; }
-        public string Address { get; set; }
+    public int CustomerId { get; set; }
+    public int Quantity { get; set; }
     }
 }

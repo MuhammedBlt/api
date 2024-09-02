@@ -2,14 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using api.Entities.Abstract;
-using api.Entities.Concrete;
+
 namespace api.Entities.Concrete
 {
-    public class Customer : IEntity
+    public class CartItem
     {
-        public string CustomerName { get; set; }
-        public string Address { get; set; }
+        public int CartItemId { get; set; }
         public int CustomerId { get; set; }
+        public int ProductId { get; set; }
+        public int Quantity { get; set; }
     }
 }

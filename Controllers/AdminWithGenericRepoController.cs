@@ -68,17 +68,5 @@ namespace api.Controllers
         }
  
          }
-         [HttpDelete("{id}")]
-         public async Task<IActionResult> Delete(int id)
-         {
-             var admin = await _adminRespository.GetByIdAsync(id);
-             if (admin == null)
-             {
-                 return NotFound();
- 
-             }
-             await _adminRespository.DeleteAsync(admin);
-             return NoContent();
- 
-         }
+         
      }

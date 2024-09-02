@@ -2,15 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using api.Entities.Abstract;
 using api.Entities.Concrete;
 
-namespace api.ViewModel
+namespace api.Entities.Concrete
 {
-    public class ShopCartRequest
+    public class OrderItem:IEntity
     {
-        public int Total { get; set; }
-        public Product? Product { get; set; }
-
         public int OrderQuantity { get; set; }
+        public int OrderItemId { get; set;}
+        
+
     }
 }
